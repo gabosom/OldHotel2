@@ -1,0 +1,43 @@
+﻿@model Hostal_El_Eden.Models.ReservationSearch
+
+<div class="aside maxheight">
+<!-- box begin -->
+    <div class="box maxheight">
+	    <div class="inner">
+		    <h3>Reservaci&oacute;n:</h3>
+		    @using (Html.BeginForm("Search", "Reservation", null, FormMethod.Get, new{@id="reservation-form"}))
+            {
+                    <table>
+			            <tr class="field">
+                            <td class="QuickReservationFormLabel">
+				                Llegada                                 
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.ResCheckinDate)
+                            </td>
+                        </tr>
+                        <tr class="field">
+                            <td class="QuickReservationFormLabel">
+                                Salida                                 
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.ResCheckoutDate)
+                            </td>
+                		</tr>	
+                        <tr class="field">
+                            <td class="QuickReservationFormLabel">
+				                Personas:                                 
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.People, Hostal_El_Eden.Models.ReservationSearch.Choices, new { style = "width:50px" })
+                            </td>
+                        </tr>
+		            </table>
+                    <!-- TODO: need real input button -->
+                    <input type="submit" class="submit" value="Buscar disponibilidad" />
+				    <!--<div class="button"><span><span><a href="#" onclick="document.getElementById('reservation-form').submit()">Buscar Disponibilidad</a></span></span></div>-->
+            }
+	    </div>
+    </div>
+</div>
+<!-- box end -->

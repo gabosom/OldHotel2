@@ -1,0 +1,28 @@
+﻿@{
+    var InicioClass = "";
+    var HabitacionesClass = "";
+    var GalleryClass = "";
+    
+    switch(Url.RequestContext.RouteData.Values["controller"].ToString())
+    {
+        case "Home":{
+            if(Url.RequestContext.RouteData.Values["action"].ToString() == "Index" || String.IsNullOrEmpty(Url.RequestContext.RouteData.Values["action"].ToString())){
+                InicioClass = "class=current";
+            }
+            else if(Url.RequestContext.RouteData.Values["action"].ToString() == "Gallery"){
+                GalleryClass = "class=current";
+            }
+        }break;
+        case "Category": HabitacionesClass = "class=current"; break;
+        case "Reservation": HabitacionesClass = "class=current"; break;
+    }
+}
+
+<ul class="nav">
+	<li><a href="@Url.Action("Index", "Home")" @InicioClass>Inicio</a></li>
+	<li><a href="@Url.RouteUrl("CategoriesToRooms", new { action = "" })" @HabitacionesClass>Habitaciones</a></li>
+	<li><a href="@Url.RouteUrl("Gallery")" @GalleryClass>Galeria</a></li>
+	<li><a href="@Url.RouteUrl("Restaurant")">Restaurant</a></li>
+	<li><a href="@Url.RouteUrl("Banos")">Ba&ntilde;os</a></li>
+	<li><a href="@Url.RouteUrl("Contact")">Contactanos</a></li>
+</ul>

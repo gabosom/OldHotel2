@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container">
+    <h2>Bienvenido al Hostal El Ed&eacute;n</h2>
+    <div class="imgWrapper contactPageDivImg">
+        <img class="png" alt="" src="@Url.Content("~/Content/images/gallery-5.jpg")" />
+    </div>
+    <p class="alt-top">Venga a visitar Ba&ntilde;os, Ecuador y hosp&eacute;dese aqu&iacute; al disfrutar la maravillosa cultura ecuatoriana!
+    </p>
+    <p>Haga una reservaci&oacute;n para comenzar o ll&aacute;menos.</p>
+    <div class="clear"></div>
+    <div class="line-hor"></div>
+    <div class="wrapper line-ver">
+	    <div class="col-1">
+		    <h3>Ofrecemos</h3>
+		    <ul>
+			    <li>Excelente ubicaci&oacute;n</li>
+			    <li>TV en cada habitaci&oacute;n</li>
+			    <li>Atenci&oacute;n a hu&eacute;spedes</li>			    
+                <li><span style="font-weight:bold">Que mas agregamos aqui???</span></li>
+		    </ul>
+		    <div class="button"><span><span><a href="#">Order Now!</a></span></span></div>
+	    </div>
+	    <div class="col-2">
+		    <h3>Ubicaci&oacute;n</h3>
+		    <p>Estamos localizados en el centro de Ba&ntilde;os</p>
+	        <dl class="contacts-list">
+		        <dt>Calle y Numero??</dt>
+		        <dd>+(593)-274-0616</dd>
+		        <!--<dd>1-800-542-6448</dd>-->
+	        </dl>
+	    </div>
+    </div>
+</div>
+
+@section Aside
+{
+    @{Html.RenderAction("ReservationAside", "Reservation");}
+}
+
+
+@section PageScripts
+{
+    @{Html.RenderPartial("ReservationAsideJS");}
+}

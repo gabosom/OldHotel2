@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Hostal_El_Eden.Models.Category>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@if (@ViewBag.ComesFromSearch == true)
+{
+    <h2>Habitaciones Disponibles</h2>   
+}
+else{
+    <h2>Habitaciones</h2>   
+}
+
+
+@foreach (var item in Model) {
+    <img class="img-indent png" src="@Url.Content("~/Content/images/" + item.ImageURL)" />
+    <p class="alt-top">@Html.DisplayFor(modelItem => item.Name)</p>
+    <div class="clear"></div>
+    <div class="line-hor"></div>
+}
+
+
+
+@section Aside
+{
+    @{Html.RenderPartial("ReservationAside");}
+}
+
+@section PageScripts
+{
+    @{Html.RenderPartial("ReservationAsideJS");}
+}

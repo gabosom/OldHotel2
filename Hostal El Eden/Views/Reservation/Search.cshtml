@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Hostal_El_Eden.Models.Category>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@if (@ViewBag.ComesFromSearch == true)
+{
+    <h2>Habitaciones Disponibles</h2>   
+}
+else{
+    <h2>Habitaciones</h2>   
+}
+
+
+<div class="containerVerticalColumns">
+
+    @{var colCount = 1;}
+
+    <div class="containerVerticalColumns">
+    @foreach (var item in Model)
+    {
+        <div class="col-@colCount">
+            <img class="extra-img searchImg png imgWrapper" src="@Url.Content("~/Content/images/" + item.ImageURL)" alt="room"/>
+            <dl class="list1">
+                <dt>@Html.DisplayFor(modelItem => item.Name)</dt>
+                <dd><span>@item.Beds</span>Camas</dd>
+			    <dd class="last"><span>$@item.Price</span>Precio:</dd>
+            </dl>
+            <div class="button"><span><span><a href="#">Reservar!</a></span></span></div>
+        </div>
+        colCount++;
+        if(colCount == 4){
+            colCount = 1;
+        }
+    }
+    </div>
+	<div class="clear"></div>
+</div>    
+
+
+@section Aside
+{
+    @if (ViewBag.ResSearch != null)
+    {
+        Html.RenderPartial("ReservationAside", (Hostal_El_Eden.Models.ReservationSearch)(ViewBag.ResSearch));
+    }
+    else
+    {
+        /*Html.RenderPartial("ReservationAside", new Hostal_El_Eden.Models.ReservationSearch(){People = 1, ResCheckinDate=DateTime.Now, ResCheckoutDate=(DateTime.Now.AddDays(1))});*/
+        Html.RenderPartial("ReservationAside", new Hostal_El_Eden.Models.ReservationSearch());
+    }
+    
+}
+
+@section PageScripts
+{
+    @{Html.RenderPartial("ReservationAsideJS");}
+    @if (ViewBag.ResSearch == null)
+    {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/Various.js")"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                HostalVarious.CleanUpField("ResCheckinDate");
+                HostalVarious.CleanUpField("ResCheckoutDate");
+            });
+
+            
+        </script>
+    }
+}
