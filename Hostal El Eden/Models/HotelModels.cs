@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using Devtalk.EF.CodeFirst;
 
 namespace Hostal_El_Eden.Models
 {
@@ -105,12 +106,18 @@ namespace Hostal_El_Eden.Models
 
     }
 
-    public class HotelDBInitializer : DropCreateDatabaseAlways<HotelContext>
+    public class HotelDBInitializer : IDatabaseInitializer<HotelContext>
     {
-        protected override void Seed(HotelContext context)
+
+        public void InitializeDatabase(HotelContext context)
         {
-            base.Seed(context);
-            
+            if (!context.Database.Exists())
+                context.Database.Create();
+
+            DontDropDbJustCreateTablesIfModelChanged<HotelContext> dontDropDb = new DontDropDbJustCreateTablesIfModelChanged<HotelContext>();
+            dontDropDb.InitializeDatabase(context);
+
+
             List<Category> initialCategories = new List<Category>();
             initialCategories.Add(new Category("Sencillo", "gallery-1.jpg", 5.50f, 1));
             initialCategories.Add(new Category("Doble", "gallery-3.jpg", 8.30f, 2));
