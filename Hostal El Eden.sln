@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Web Developer Express 11
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostal El Eden", "Hostal El Eden\Hostal El Eden.csproj", "{E52661C1-E6ED-4133-AFE1-ACBBAF81E592}"
 EndProject
 Global
